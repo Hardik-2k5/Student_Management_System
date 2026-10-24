@@ -5,4 +5,11 @@ class Student:
         self.age = age
         self.course = course
 
+    def display_details(self):
+        print("<<-- Student Information -->>")
+        print(f"Student id: {self.student_id}")
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Course: {self.course}")
+
     
