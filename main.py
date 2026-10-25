@@ -61,9 +61,10 @@ while True:
                 manager.delete_student(student_id)
             except ValueError:
                 print("enter valid Id!!!!")
-                
+
         case 5:
-            print("all students list")
+            print("<<-- All Students List -->>")
+            manager.display_all_students()
         case 6:
             print("Exited") 
             break

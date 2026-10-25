@@ -35,3 +35,10 @@ class StudentManager:
             print("student deleted succefully")
         
 
+    def display_all_students(self):
+        if not self.students_info:
+            print("Database empty!!!")
+        else:
+            for i in self.students_info:
+                student = self.students_info[i]
+                student.display_details()
