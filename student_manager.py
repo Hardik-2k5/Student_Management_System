@@ -28,4 +28,10 @@ class StudentManager:
         except ValueError:
             print("Enter valid Information")
 
-    
+    def delete_student(self,student_id):
+        student = self.search_student(student_id)
+        if student is not None:
+            del self.students_info[student_id]
+            print("student deleted succefully")
+        
+

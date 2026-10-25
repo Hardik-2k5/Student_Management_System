@@ -58,8 +58,10 @@ while True:
             print("<<= Deleting Student =>>")
             try:
                 student_id = int(input("Student Id: "))
+                manager.delete_student(student_id)
             except ValueError:
                 print("enter valid Id!!!!")
+                
         case 5:
             print("all students list")
         case 6:
