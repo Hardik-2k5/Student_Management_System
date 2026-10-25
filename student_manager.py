@@ -17,3 +17,15 @@ class StudentManager:
         else:
             print("Student not found")
             return None
+
+    def update_student(self,student_id):
+        try:
+            update_std = self.students_info[student_id]
+            update_std.name = input("Student Name: ")
+            update_std.age = int(input("Studnet Age: "))
+            update_std.course = input("Studnet Course: ")
+            self.students_info[student_id] = update_std
+        except ValueError:
+            print("Enter valid Information")
+
+    

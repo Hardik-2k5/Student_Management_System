@@ -44,11 +44,22 @@ while True:
                 print("Enter Valid Student id !!!")
                     
         case 3:
-            print("Updating Student Details")
-            student_id = int(input("Enter Student Id: "))
+            print("<<= Updating Student Data =>>")
+            try:
+                student_id = int(input("Enter Student Id: "))
+                std_info = manager.search_student(student_id)
+                if std_info is not None:
+                    manager.update_student(student_id)
+            except ValueError:
+                print("Enter Valid Student id !!!")
+                               
             
         case 4:
-            print("deleting student")
+            print("<<= Deleting Student =>>")
+            try:
+                student_id = int(input("Student Id: "))
+            except ValueError:
+                print("enter valid Id!!!!")
         case 5:
             print("all students list")
         case 6:
