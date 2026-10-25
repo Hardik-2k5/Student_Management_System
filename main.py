@@ -35,9 +35,18 @@ while True:
                 continue
 
         case 2:
-            print("searching student")
+            try:
+                student_id = int(input("Enter Student Id: "))
+                std_info = manager.search_student(student_id)
+                if std_info is not None:
+                    std_info.display_details()
+            except ValueError:
+                print("Enter Valid Student id !!!")
+                    
         case 3:
-            print("updating student")
+            print("Updating Student Details")
+            student_id = int(input("Enter Student Id: "))
+            
         case 4:
             print("deleting student")
         case 5:
@@ -47,4 +56,5 @@ while True:
             break
         case _:
             print("invalid choice!!!!")
+
            

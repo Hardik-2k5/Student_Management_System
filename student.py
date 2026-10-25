@@ -11,5 +11,4 @@ class Student:
         print(f"Name: {self.name}")
         print(f"Age: {self.age}")
         print(f"Course: {self.course}")
-
     
