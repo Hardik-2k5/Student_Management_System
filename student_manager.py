@@ -13,10 +13,11 @@ class StudentManager:
 
     def search_student(self,student_id):
         if student_id in self.students_info:
-            return self.students_info[student_id]
+            std_info = self.students_info[student_id]
+            std_info.display_details()
         else:
             print("Student not found")
-            return None
+           
 
     def update_student(self,student_id):
         student = self.search_student(student_id)
