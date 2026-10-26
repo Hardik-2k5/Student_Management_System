@@ -1,5 +1,6 @@
 import student
 import student_manager
+import validation
 
 print("==== STUDENT MANAGEMENT SYSTEM ====\n")
 print("1. Add Student")
@@ -22,14 +23,13 @@ while True:
         case 1:
             print("<<-- Enter information -->>")
             while True:
-                try:
-                    student_id = int(input("Student id: "))
-                    if student_id <= 0 :
-                        print("Enter valid Id !!!")
-                    else:
-                        break
-                except ValueError:
-                    print("Enter valid Id !!!")
+                student_id = input("Student id: ").strip()
+                result = validation.integer_validation(student_id)
+                if result is not None:
+                    student_id = result
+                    break
+                else:
+                    print("Enter valid Id!!!!!")
 
             while True:
                 name = input("Student Name: ").strip()
