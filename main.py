@@ -21,25 +21,53 @@ while True:
     match user_choice:
         case 1:
             print("<<-- Enter information -->>")
-            try:
-                student_id = int(input("Student id: "))
-                name = input("Student Name: ")
-                age = int(input("Student Age: "))
-                course = input("Course: ")
+            while True:
+                try:
+                    student_id = int(input("Student id: "))
+                    if student_id <= 0 :
+                        print("Enter valid Id !!!")
+                    else:
+                        break
+                except ValueError:
+                    print("Enter valid Id !!!")
 
-                std = student.Student(student_id,name,age,course)
-                manager.add_student(std)
+            while True:
+                name = input("Student Name: ").strip()
+                if "" == name:
+                    print("Name is empty !!!!!")
+                else:
+                    break
 
-            except ValueError:
-                print("Enter Valid Information!!!!")
-                continue
+            while True:
+                try:
+                    age = int(input("Student Age: "))
+                    if  age >= 3 and age <= 120 :
+                        break
+                    else:
+                        print("Valid age range is 3-120 !!!")
+                except ValueError:
+                    print("Please Enter Valid Integer !!!")
+
+            while True:
+                course = input("Student Course: ").strip()
+                if "" == course:
+                    print("Course is empty !!!!!")
+                else:
+                    break
 
         case 2:
+            print("<<-- Searching Student -->>")
             try:
                 student_id = int(input("Enter Student Id: "))
-                std_info = manager.search_student(student_id)
+                if student_id <= 0:
+                    print("Enter Valid Student id !!!")
+                    continue    
+                else:
+                    std_info = manager.search_student(student_id)
+
                 if std_info is not None:
                     std_info.display_details()
+
             except ValueError:
                 print("Enter Valid Student id !!!")
                     
@@ -47,13 +75,15 @@ while True:
             print("<<= Updating Student Data =>>")
             try:
                 student_id = int(input("Enter Student Id: "))
-                std_info = manager.search_student(student_id)
-                if std_info is not None:
-                    manager.update_student(student_id)
+                if student_id <= 0: 
+                    print("Enter Valid Student id !!!")
+                    continue
+                else:
+                    std_info = manager.update_student(student_id)
+                                  
             except ValueError:
                 print("Enter Valid Student id !!!")
-                               
-            
+                                
         case 4:
             print("<<= Deleting Student =>>")
             try:
@@ -71,4 +101,4 @@ while True:
         case _:
             print("invalid choice!!!!")
 
-           
+            

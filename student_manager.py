@@ -19,14 +19,38 @@ class StudentManager:
             return None
 
     def update_student(self,student_id):
-        try:
+        student = self.search_student(student_id)
+        if student is not None:
+            
             update_std = self.students_info[student_id]
-            update_std.name = input("Student Name: ")
-            update_std.age = int(input("Studnet Age: "))
-            update_std.course = input("Studnet Course: ")
+            while True:
+                name = input("Student Name: ").strip()
+                if "" == name:
+                    print("Name is empty !!!!!")
+                else:
+                    update_std.name = name
+                    break
+
+            while True:
+                try:
+                    age = int(input("Student Age: "))
+                    if  age >= 3 and age <= 120 :
+                        update_std.age = age
+                        break
+                    else:
+                        print("Valid age range is 3-120 !!!")
+                except ValueError:
+                    print("Please Enter Valid Integer !!!")
+
+            while True:
+                course = input("Student Course: ").strip()
+                if "" == course:
+                    print("Course is empty !!!!!")
+                else:
+                    update_std.course = course
+                    break
+                    
             self.students_info[student_id] = update_std
-        except ValueError:
-            print("Enter valid Information")
 
     def delete_student(self,student_id):
         student = self.search_student(student_id)
