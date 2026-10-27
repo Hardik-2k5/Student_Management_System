@@ -1,3 +1,4 @@
+import validation
 class StudentManager:
     def __init__(self):
         self.students_info = {}
@@ -13,11 +14,10 @@ class StudentManager:
 
     def search_student(self,student_id):
         if student_id in self.students_info:
-            std_info = self.students_info[student_id]
-            std_info.display_details()
+            std_info = self.students_info[student_id]     
+            return std_info
         else:
-            print("Student not found")
-           
+            return None
 
     def update_student(self,student_id):
         student = self.search_student(student_id)
@@ -25,31 +25,31 @@ class StudentManager:
             
             update_std = self.students_info[student_id]
             while True:
-                name = input("Student Name: ").strip()
-                if "" == name:
-                    print("Name is empty !!!!!")
-                else:
-                    update_std.name = name
+                name = input("Student Name: ")
+                result = validation.string_validation(name)
+                if result is not None:
+                    update_std.name[result]
                     break
+                else:
+                    print("Invalid Name!!!!!!!!")
 
             while True:
-                try:
-                    age = int(input("Student Age: "))
-                    if  age >= 3 and age <= 120 :
-                        update_std.age = age
-                        break
-                    else:
-                        print("Valid age range is 3-120 !!!")
-                except ValueError:
-                    print("Please Enter Valid Integer !!!")
+                age = input("Enter Student Age:")
+                result = validation.age_validation(age)
+                if result is not None:
+                    update_std.age[result]
+                    break
+                else:
+                    print("Invalid Age !!!")
 
             while True:
-                course = input("Student Course: ").strip()
-                if "" == course:
-                    print("Course is empty !!!!!")
-                else:
-                    update_std.course = course
+                course = input("Student Course: ")
+                result = validation.string_validation(course)
+                if result is not None:
+                    update_std.course[result]
                     break
+                else:
+                    print("Invalid Name!!!!!!!!")
                     
             self.students_info[student_id] = update_std
 
@@ -57,7 +57,9 @@ class StudentManager:
         student = self.search_student(student_id)
         if student is not None:
             del self.students_info[student_id]
-            print("student deleted succefully")
+            return True
+        else:
+            return False
         
 
     def display_all_students(self):

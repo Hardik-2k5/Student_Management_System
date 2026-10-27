@@ -66,32 +66,38 @@ while True:
             while True:
                 student_id = input("Enter Student Id: ")
                 result = validation.integer_validation(student_id)
-                if result is not None:
-                    manager.search_student(result)
-                    break
+                if result is not None:                 
+                    search_result = manager.search_student(result)
+                    if search_result is not None:
+                        search_result.display_details()
+                        break
+                    
                 else:
                     print("Invalid Id!!!!!!")
 
         case 3:
             print("<<= Updating Student Data =>>")
-            try:
-                student_id = int(input("Enter Student Id: "))
-                if student_id <= 0: 
-                    print("Enter Valid Student id !!!")
-                    continue
-                else:
-                    std_info = manager.update_student(student_id)
-                                  
-            except ValueError:
-                print("Enter Valid Student id !!!")
+            student_id = input("Enter Student Id: ")
+            result = validation.integer_validation(student_id)
+            if result is not None:
+                manager.update_student(result)
+                break
+            else:
+                print("Invalid Id!!!!")
+
                                 
         case 4:
             print("<<= Deleting Student =>>")
-            try:
-                student_id = int(input("Student Id: "))
-                manager.delete_student(student_id)
-            except ValueError:
-                print("enter valid Id!!!!")
+            student_id = input("Enter Student Id: ")
+            result = validation.integer_validation(student_id)
+            if result is not None:
+                delete_result = manager.delete_student(result)
+                if delete_result == True:
+                    print("Student deleted Succesfully")
+                else:
+                    print("Student Not Found")
+            else:
+                print("Invalide Input!!!!")
 
         case 5:
             print("<<-- All Students List -->>")
