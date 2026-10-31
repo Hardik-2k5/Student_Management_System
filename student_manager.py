@@ -1,10 +1,11 @@
 import validation
+import json
+
 class StudentManager:
     def __init__(self):
         self.students_info = {}
-        
+        self.get_json()
 
-    
     def add_student(self,student):
         if student.student_id in self.students_info:
             print(f"Student Id: {student.student_id} already exist in our system!!!")
@@ -61,7 +62,6 @@ class StudentManager:
         else:
             return False
         
-
     def display_all_students(self):
         if not self.students_info:
             print("Database empty!!!")
@@ -69,3 +69,25 @@ class StudentManager:
             for i in self.students_info:
                 student = self.students_info[i]
                 student.display_details()
+
+    def get_json(self):
+        raw_data = {}
+        try:
+            with open("Students.json","r") as data:
+                raw_data = json.load(data)
+            for i in raw_data:
+                const_std = const_std(**raw_data[i])
+                self.students_info[const_std.student_id] = const_std
+                
+        except FileNotFoundError:
+            with open("Students.json","w") as data:
+                json.dump(self.students_info,data,indent=4)
+
+    def store_json(self):
+        raw_data = {}
+        for i in self.students_info:
+            std_obj = self.students_info[i]
+            student = std_obj.__dict__
+            raw_data[std_obj.student_id] = student
+        with open("Students.json","w")as data:
+            json.dump(raw_data,data,indent= 4)
