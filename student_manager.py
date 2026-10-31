@@ -1,4 +1,5 @@
 import validation
+import student
 import json
 
 class StudentManager:
@@ -11,6 +12,7 @@ class StudentManager:
             print(f"Student Id: {student.student_id} already exist in our system!!!")
         else:
             self.students_info[student.student_id] = student
+            self.store_json()
             print("<< Student Added succefully >>")
 
     def search_student(self,student_id):
@@ -53,11 +55,13 @@ class StudentManager:
                     print("Invalid Name!!!!!!!!")
                     
             self.students_info[student_id] = update_std
+            self.store_json()
 
     def delete_student(self,student_id):
         student = self.search_student(student_id)
         if student is not None:
             del self.students_info[student_id]
+            self.store_json()
             return True
         else:
             return False
@@ -76,7 +80,7 @@ class StudentManager:
             with open("Students.json","r") as data:
                 raw_data = json.load(data)
             for i in raw_data:
-                const_std = const_std(**raw_data[i])
+                const_std = student.Student(**raw_data[i])
                 self.students_info[const_std.student_id] = const_std
                 
         except FileNotFoundError:
