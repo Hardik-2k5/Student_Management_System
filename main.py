@@ -71,19 +71,26 @@ while True:
                     if search_result is not None:
                         search_result.display_details()
                         break
-                    
+                    else:
+                        print("Student Not found")                   
                 else:
                     print("Invalid Id!!!!!!")
 
         case 3:
             print("<<= Updating Student Data =>>")
-            student_id = input("Enter Student Id: ")
-            result = validation.integer_validation(student_id)
-            if result is not None:
-                manager.update_student(result)
-                break
-            else:
-                print("Invalid Id!!!!")
+            while True:
+                student_id = input("Enter Student Id: ")
+                result = validation.integer_validation(student_id)
+                if result is not None:
+                    update_result = manager.update_student(result)
+                    if update_result == True:
+                        print("New Information updated sccessfully")
+                        break
+                        
+                    else:
+                        print("Student Not Found !!!!")
+                else:
+                    print("Invalid Id!!!!")
 
                                 
         case 4:

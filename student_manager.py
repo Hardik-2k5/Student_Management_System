@@ -28,7 +28,7 @@ class StudentManager:
                 name = input("Student Name: ")
                 result = validation.string_validation(name)
                 if result is not None:
-                    update_std.name[result]
+                    update_std.name = result
                     break
                 else:
                     print("Invalid Name!!!!!!!!")
@@ -37,7 +37,7 @@ class StudentManager:
                 age = input("Enter Student Age:")
                 result = validation.age_validation(age)
                 if result is not None:
-                    update_std.age[result]
+                    update_std.age = result
                     break
                 else:
                     print("Invalid Age !!!")
@@ -46,12 +46,16 @@ class StudentManager:
                 course = input("Student Course: ")
                 result = validation.string_validation(course)
                 if result is not None:
-                    update_std.course[result]
+                    update_std.course = result
                     break
                 else:
                     print("Invalid Name!!!!!!!!")
                     
             self.students_info[student_id] = update_std
+            return True
+        else:
+            return False
+
 
     def delete_student(self,student_id):
         student = self.search_student(student_id)
